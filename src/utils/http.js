@@ -2,20 +2,23 @@ import axios from 'axios';
 import router from '../router'
 
 axios.defaults.timeout = 5000;
-axios.defaults.baseURL = '';
+axios.defaults.baseURL = 'https://119.147.216.189';
+// axios.defaults.baseURL = 'https://p2p-plt.yingxiang.pingan.com:8012';
 
 
 //http request 拦截器
 axios.interceptors.request.use(
     config => {
-        // const token = getCookie('名称');注意使用的时候需要引入cookie方法，推荐js-cookie
+        let token = localStorage.getItem('token');
+        let refresToken = localStorage.getItem('refresToken');
         config.data = JSON.stringify(config.data);
         config.headers = {
-            'Content-Type': 'application/x-www-form-urlencoded'
+            'Content-Type': 'application/json; charset=UTF-8 '
         }
-        // if(token){
-        //   config.params = {'token':token}
-        // }
+        if (token) {
+            config.headers['X-PA-ACCESSTOKEN'] = token
+            config.headers['X-PA-REFRESHTOKEN'] = refresToken
+        }
         return config;
     },
     error => {
@@ -26,7 +29,8 @@ axios.interceptors.request.use(
 //http response 拦截器
 axios.interceptors.response.use(
     response => {
-        if (response.data.errCode == 2) {
+        localStorage.setItem('refresh', '1')//0 停止 1进行 ,定时获取token流程，10分钟无操作停止，每次发送请求时会更新这个状态为1,每次更新成功会改成0
+        if (response.data.errCode == '10411') {
             router.push({
                 path: "/login",
                 querry: {redirect: router.currentRoute.fullPath}//从哪个页面跳转
@@ -35,6 +39,15 @@ axios.interceptors.response.use(
         return response;
     },
     error => {
+        if (!error.response) {
+            return Promise.reject(error)
+        }
+        if (error.response.status == '401') {
+            router.push({
+                path: "/login",
+                querry: {redirect: router.currentRoute.fullPath}//从哪个页面跳转
+            })
+        }
         return Promise.reject(error)
     }
 )

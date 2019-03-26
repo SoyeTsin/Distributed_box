@@ -1,0 +1,264 @@
+.list {
+  margin-bottom: 40px;
+
+  /deep/ .el-breadcrumb__inner {
+    font-family: PingFangSC-Regular;
+    font-size: 18px;
+    color: #28355D;
+  }
+
+  .list-content {
+    width: 100%;
+    background: #ffffff;
+    padding: 0;
+
+    .list-content-top {
+      display: flex;
+      justify-content: space-between;
+      height: 80px;
+      line-height: 80px;
+      padding: 0 40px;
+      box-sizing: border-box;
+
+      .title {
+        box-sizing: border-box;
+        font-family: PingFangSC-Regular;
+        font-size: 20px;
+        color: #28355D;
+      }
+
+      .el-input {
+        width: 280px;
+      }
+    }
+
+
+    /deep/ .el-input__inner {
+      border: 1px solid #C9C9C9;
+      box-shadow: 0 2px 4px 1px rgba(225, 221, 221, 0.50);
+      border-radius: 11px;
+      width: 282px;
+      height: 35px;
+    }
+  }
+
+}
+
+.details {
+  margin-bottom: 40px;
+
+  /deep/ .el-breadcrumb__inner {
+    font-family: PingFangSC-Regular;
+    font-size: 18px;
+    color: #28355D;
+  }
+
+  .details-content {
+    width: 100%;
+    background: #ffffff;
+    padding: 0;
+
+    .details-content-top {
+      display: flex;
+      justify-content: space-between;
+      height: 80px;
+      line-height: 80px;
+      padding: 0 40px;
+      box-sizing: border-box;
+
+      .title {
+        box-sizing: border-box;
+        font-family: PingFangSC-Regular;
+        font-size: 20px;
+        color: #28355D;
+      }
+
+      .text-center {
+        width: 100%;
+
+
+      }
+
+      .el-input {
+        width: 280px;
+      }
+    }
+
+
+    /deep/ .el-input__inner {
+      border: 1px solid #C9C9C9;
+      box-shadow: 0 2px 4px 1px rgba(225, 221, 221, 0.50);
+      border-radius: 11px;
+      width: 282px;
+      height: 35px;
+    }
+
+    .details-title {
+      display: flex;
+      justify-content: flex-start;
+
+      > div {
+        margin-right: 30px;
+      }
+    }
+  }
+}
+
+.chart-content-title {
+  margin: 26px auto;
+  font-family: PingFangSC-Regular;
+  font-size: 18px;
+  color: #212C52;
+}
+
+/deep/ .el-button.chart-button {
+  border: 1px solid #979797;
+  box-shadow: 1px 3px 4px 2px rgba(94, 94, 94, 0.17);
+  border-radius: 4px;
+  height: 30px;
+  line-height: 30px;
+  box-sizing: border-box;
+  padding: 0 20px;
+}
+
+/deep/ .el-button.chart-button:active, /deep/ .el-button.chart-button:hover, /deep/ .el-button.chart-button.active {
+  background: #577FFE;
+  border: solid 1px #577FFE;
+  box-shadow: 1px 3px 4px 0 rgba(163, 159, 159, 0.17);
+  border-radius: 4px;
+  color: #fff;
+}
+
+.chart-title {
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 12px 40px;
+
+  .right {
+    font-family: PingFangSC-Medium;
+    font-size: 16px;
+    color: #7A8198;
+  }
+}
+
+
+.chart-content {
+  width: 100%;
+  height: 300px;
+  margin-bottom: 40px;
+}
+
+.scroll-content {
+  width: 100%;
+  height: 300px;
+  margin-bottom: 60px;
+  display: flex;
+  justify-content: space-between;
+
+  > div {
+    width: 50%;
+    height: 100%;
+
+    .scroll-content-item {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.legend {
+  display: flex;
+  justify-content: space-between;
+  font-family: PingFangSC-Medium;
+  font-size: 16px;
+  color: #7A8198;
+
+  > div {
+    display: flex;
+    justify-content: flex-start;
+    width: 120px;
+  }
+
+  > :before {
+    display: block;
+    content: '';
+    background: #F569D1;
+    border-radius: 3px;
+    width: 40px;
+    height: 6px;
+    position: relative;
+    top: 8px;
+    margin-right: 10px;
+  }
+
+  > :first-child:before {
+    background: #6AADF4;
+  }
+}
+
+.chart-title.blue-title {
+  font-family: PingFangSC-Medium;
+  font-size: 14px;
+  color: #577FFE;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: flex-start;
+
+  > div {
+    min-width: 250px;
+    text-align: left;
+  }
+}
+
+.so-bar {
+  width: 100%;
+
+  .bar-item {
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 17px 40px;
+
+    .bar {
+      width: 830px;
+      height: 20px;
+      background-color: #D8D8D8;
+      border-radius: 20px;
+
+      .active {
+        height: 20px;
+        background: linear-gradient(to right, #5388FF, #6764FB);
+        border-radius: 20px;
+      }
+    }
+
+    .title {
+      font-family: PingFangSC-Medium;
+      font-size: 16px;
+      color: #7A8198;
+      line-height: 20px;
+    }
+  }
+}
+
+.red {
+  color: red
+}
+
+.integral-scope {
+  .text {
+    display: inline-block;
+  }
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+.pagination.dialog-pagination {
+  padding: 20px 0;
+}
