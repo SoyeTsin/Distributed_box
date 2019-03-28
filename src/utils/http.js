@@ -2,8 +2,9 @@ import axios from 'axios';
 import router from '../router'
 
 axios.defaults.timeout = 5000;
-// axios.defaults.baseURL = 'https://119.147.216.189';
-axios.defaults.baseURL = 'https://p2p-ply';
+// axios.defaults.baseURL = 'https://119.147.216.189';https://p2p-plt.yingxiang.pingan.com:8012
+axios.defaults.baseURL = 'https://p2p-plt.yingxiang.pingan.com:8012';
+// axios.defaults.baseURL = 'https://p2p-ply';
 
 
 //http request 拦截器
