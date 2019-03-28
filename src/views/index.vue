@@ -3,7 +3,8 @@
         <div class="header">
             <div class="header-content">
                 <div class="title">
-                    分布式后管平台
+                    <img :src="logo">
+                    <div>分布式后管平台</div>
                 </div>
                 <div class="logout">
                     <div> {{userName}}</div>
@@ -30,6 +31,7 @@
 </template>
 
 <script>
+    import logo from '../assets/logo@2x.png'
     import boxAside from '../components/boxAside'
     import logout from '../assets/logout.png'
 
@@ -38,6 +40,7 @@
         components: {boxAside},
         data() {
             return {
+                logo,
                 logout,
                 userName: ''
             }
@@ -94,7 +97,8 @@
         min-height: 100%;
         position: absolute;
         background: rgb(242, 244, 244);
-        ::after{
+
+        ::after {
             content: '';
             display: block;
             clear: both;
@@ -124,10 +128,24 @@
         }
 
         .title {
-            font-family: PingFangSC-Regular;
-            font-size: 24px;
-            color: #FFFFFF;
-            letter-spacing: 0;
+            display: flex;
+            justify-content: flex-start;
+
+            > img {
+                position: relative;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 40px;
+                height: 40px;
+                margin-right: 20px;
+            }
+
+            > div {
+                font-family: PingFangSC-Regular;
+                font-size: 24px;
+                color: #FFFFFF;
+                letter-spacing: 0;
+            }
         }
 
         .logout {
@@ -191,7 +209,7 @@
             .content {
                 width: 1342px;
                 box-sizing: border-box;
-                padding: 56px 0px 0 80px;
+                padding: 56px 10px 0 80px;
                 display: flex;
                 justify-content: flex-end;
 
