@@ -2,8 +2,21 @@ import axios from 'axios';
 import router from '../router'
 
 axios.defaults.timeout = 5000;
-// axios.defaults.baseURL = 'https://119.147.216.189';https://p2p-plt.yingxiang.pingan.com:8012
-axios.defaults.baseURL = 'https://p2p-plt.yingxiang.pingan.com:8012';
+//自动判断环境
+console.log(window.location.host)
+const urlHost=window.location.host
+if(urlHost=='www.soyetsin.com'){
+    axios.defaults.baseURL = 'https://119.147.216.189';
+    console.log('现在连接的是开发环境')
+}else if(urlHost=='www.soyelive.com'){
+    axios.defaults.baseURL = 'https://p2p-plt.yingxiang.pingan.com:8012';
+    console.log('现在连接的是测试环境')
+}else{
+    axios.defaults.baseURL = 'https://119.147.216.189';
+    console.log('现在连接的是开发环境')
+}
+// axios.defaults.baseURL = 'https://119.147.216.189';
+// axios.defaults.baseURL = 'https://p2p-plt.yingxiang.pingan.com:8012';
 // axios.defaults.baseURL = 'https://p2p-ply';
 
 
