@@ -31,7 +31,8 @@
                         fixed
                         label="Device ID">
                     <template slot-scope="scope">
-                        <el-button @click="handleClick(scope.row)" type="text" size="small">{{scope.row.device_id|stringFilter}}
+                        <el-button @click="handleClick(scope.row)" type="text" size="small">
+                            {{scope.row.device_id|stringFilter}}
                         </el-button>
                     </template>
                 </el-table-column>
@@ -69,11 +70,11 @@
                         show-overflow-tooltip
                         label="容量／（总量／共享／已用）">
                     <template slot-scope="scope">
-                        {{scope.row.storage_total}}／{{scope.row.storage_shared}}／{{scope.row.storage_used}}
+                        {{scope.row.storage_total|numFil}}／{{scope.row.storage_shared|numFil}}／{{scope.row.storage_used|numFil}}
                     </template>
                 </el-table-column>
                 <el-table-column
-                        show-overflow-tooltip
+                        width="60"
                         label="评分">
                     <template>
                         -
@@ -118,10 +119,16 @@
         }, filters: {
             stringFilter(val) {
                 return '' + val
+            },
+            numFil(num) {
+                num = (num / (1000 * 1000 * 1000 * 1000)).toFixed(2)
+                return num + ' GB'
             }
-        }, mounted() {
+        },
+        mounted() {
             this.getData();
-        }, methods: {
+        },
+        methods: {
             sortFun(e) {
                 if (e.order == 'descending') {
                     this.parameter.sort_type = 'desc'
