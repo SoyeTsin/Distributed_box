@@ -26,14 +26,17 @@
                         width="36">
                 </el-table-column>
                 <el-table-column
-                        prop="device_id"
                         label="盒子Device ID"
-                        width="180">
+                        >
+                    <template slot-scope="scope">
+                        <el-button @click="boxClick(scope.row)" type="text" size="small">{{scope.row.device_id|stringFilter}}
+                        </el-button>
+                    </template>
                 </el-table-column>
                 <el-table-column
                         prop="device_type"
                         label="机型"
-                        width="180">
+                       >
                 </el-table-column>
                 <el-table-column
                         show-overflow-tooltip
@@ -140,7 +143,11 @@
                 },
 
             }
-        }, mounted() {
+        },  filters: {
+            stringFilter(val) {
+                return '' + val
+            }
+        },mounted() {
             this.user_id = this.$route.query.user_id
             this.mobile = this.$route.query.mobile
             this.register_time = this.$route.query.register_time
@@ -177,6 +184,12 @@
             handleClick(val) {
                 this.storePageParameter.page_index = val
                 this.getData()
+            },
+            boxClick(e) {
+                this.$router.push({
+                    path: '/boxDetails',
+                    query: e
+                })
             }
         }
     }

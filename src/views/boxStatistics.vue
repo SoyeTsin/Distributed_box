@@ -240,17 +240,34 @@
                 item.state = true
             },
             weeklyFun() {
+                this.weekly = {
+                    daily_average: 0,
+                    list: []
+                }
                 this.$post(this.$api.weekly)
                     .then((response) => {
                         if (response.code != '10200') {
                             this.msg = response.message
                             return
                         }
-                        this.weekly.daily_average = response.data.daily_average || 0
-                        this.weekly.list.push({name: '20小时以上', val: response.data.total_20plus || 0})
-                        this.weekly.list.push({name: '12-20小时', val: response.data.total_12to20 || 0})
-                        this.weekly.list.push({name: '5-11小时', val: response.data.total_5to12 || 0})
-                        this.weekly.list.push({name: '5小时以下', val: response.data.total_5minus || 0})
+                        this.weekly.daily_average = (response.data.daily_average/60/60).toFixed(2) || 0
+                        let count = response.data.total_20plus * 1 + response.data.total_12to20 * 1 + response.data.total_5to12 * 1 + response.data.total_5minus * 1
+                        this.weekly.list.push({
+                            name: '20小时以上',
+                            val: (response.data.total_20plus / count * 100).toFixed(2) || 0
+                        })
+                        this.weekly.list.push({
+                            name: '12-20小时',
+                            val: (response.data.total_12to20 / count * 100).toFixed(2) || 0
+                        })
+                        this.weekly.list.push({
+                            name: '5-11小时',
+                            val: (response.data.total_5to12 / count * 100).toFixed(2) || 0
+                        })
+                        this.weekly.list.push({
+                            name: '5小时以下',
+                            val: (response.data.total_5minus / count * 100).toFixed(2) || 0
+                        })
                     })
             },
             devicesLive() {

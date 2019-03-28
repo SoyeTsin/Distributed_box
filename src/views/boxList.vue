@@ -31,7 +31,7 @@
                         fixed
                         label="Device ID">
                     <template slot-scope="scope">
-                        <el-button @click="handleClick(scope.row)" type="text" size="small">{{scope.row.device_id}}
+                        <el-button @click="handleClick(scope.row)" type="text" size="small">{{scope.row.device_id|stringFilter}}
                         </el-button>
                     </template>
                 </el-table-column>
@@ -112,6 +112,10 @@
                     page_size: 10,
                     filter_keyword: ''
                 }
+            }
+        }, filters: {
+            stringFilter(val) {
+                return '' + val
             }
         }, mounted() {
             this.getData();

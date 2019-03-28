@@ -1,6 +1,6 @@
 <template>
-    <el-container>
-        <el-header height="75px">
+    <div class="body">
+        <div class="header">
             <div class="header-content">
                 <div class="title">
                     分布式后管平台
@@ -11,8 +11,8 @@
                     <div @click="logoutFun"><img :src="logout"></div>
                 </div>
             </div>
-        </el-header>
-        <el-main>
+        </div>
+        <div class="main">
             <div class="main-content">
                 <div class="aside">
                     <div class="aside-content">
@@ -25,8 +25,8 @@
                     </div>
                 </div>
             </div>
-        </el-main>
-    </el-container>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -70,7 +70,7 @@
                         }, 2000)
                     })
             },
-            logoutFun(){
+            logoutFun() {
                 const that = this
                 this.$fetch(this.$api.logout)
                     .then((response) => {
@@ -88,13 +88,27 @@
 </script>
 
 <style scoped lang="less">
+    body {
+        height: 100%;
+        width: 100%;
+        min-height: 100%;
+        position: absolute;
+        background: rgb(242, 244, 244);
+        ::after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+    }
+
     @contentWidth: 1678px;
-    .el-header {
+    .header {
         height: 75px;
         width: 100%;
+        min-width: @contentWidth;
         background: rgb(90, 123, 254);
+        margin: auto;
         position: absolute;
-        z-index: 10;
 
         .header-content {
             width: @contentWidth;
@@ -105,6 +119,8 @@
             justify-content: space-between;
             line-height: 75px;
             color: #ffffff;
+            box-sizing: border-box;
+            padding: 0 25px;
         }
 
         .title {
@@ -135,12 +151,11 @@
         }
     }
 
-    .el-main {
+    .main {
         height: 100%;
-        width: 100%;
-        position: absolute;
-        z-index: 1;
+        width: @contentWidth;
         box-sizing: border-box;
+        margin: auto;
         padding: 75px 0 0 0;
         background: rgb(242, 244, 244);
 
@@ -161,10 +176,16 @@
 
                 .aside-content {
                     width: 220px;
-                    background: #FFFFFF;
-                    box-shadow: 0 3px 3px 1px rgba(190, 190, 190, 0.43);
-                    border-radius: 5px;
+                    /*background: #FFFFFF;*/
+                    /*box-shadow: 0 3px 3px 1px rgba(190, 190, 190, 0.43);*/
+                    /*border-radius: 5px;*/
                 }
+            }
+
+            /deep/ .el-menu-vertical-demo {
+                box-shadow: 0 3px 3px 1px rgba(190, 190, 190, 0.43);
+                border-radius: 5px;
+                overflow: hidden;
             }
 
             .content {

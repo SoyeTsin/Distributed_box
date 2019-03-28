@@ -11,12 +11,12 @@
                     <div class="account-item">
                         <img :src="account_username">
                         <div>用户名：</div>
-                        <el-input class="account-input" v-model="login_name" maxlength="25"></el-input>
+                        <el-input class="account-input" v-model="login_name" maxlength="25" clearable></el-input>
                     </div>
                     <div class="account-item">
                         <img :src="account_password">
                         <div>密&nbsp;&nbsp;码：</div>
-                        <el-input class="account-input" :type="passwordType?'password':'text'"
+                        <el-input class="account-input" :type="passwordType?'password':'text'" clearable
                                   v-model="password" maxlength="25"></el-input>
                         <img :src="eye" class="eye" @click="passwordType=!passwordType">
                     </div>
@@ -67,6 +67,10 @@
                 this.$post(this.$api.login, parameter)
                     .then((response) => {
                         if (response.code != '10200') {
+                            that.msg = response.message
+                            return
+                        }
+                        if (!response.data) {
                             that.msg = response.message
                             return
                         }
