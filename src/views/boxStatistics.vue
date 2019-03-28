@@ -73,12 +73,12 @@
             <div class="chart-title">
                 <div>
                     <el-button :class="item.state?'chart-button active':'chart-button'"
-                               v-for="item in boxOnlineButton" v-bind:key="item.id"
-                               @click="selectCycle(item,'boxOnlineButton')">{{item.name}}
+                               v-for="item in devicesLiveButton" v-bind:key="item.id"
+                               @click="selectCycle(item,'devicesLiveButton')">{{item.name}}
                     </el-button>
                 </div>
                 <div>
-                    平均在线时长：18.33小时／天
+                    平均在线时长：{{devicesLiveList.pingjun}}小时／天
                 </div>
             </div>
             <div class="chart-content" id="boxLiveTime"></div>
@@ -144,22 +144,28 @@
                     ]
                 },
                 devicesButton: [
-                    {name: '一周', state: true, cycle: 7},
-                    {name: '一月', state: false, cycle: 30},
-                    {name: '三月', state: false, cycle: 90},
-                    {name: '半年', state: false, cycle: 183}
+                    {name: '一周', state: true, cycle: 6},
+                    {name: '一月', state: false, cycle: 29},
+                    {name: '三月', state: false, cycle: 89},
+                    {name: '半年', state: false, cycle: 182}
                 ],
                 boxSpaceButton: [
-                    {name: '一周', state: true, cycle: 7},
-                    {name: '一月', state: false, cycle: 30},
-                    {name: '三月', state: false, cycle: 90},
-                    {name: '半年', state: false, cycle: 183}
+                    {name: '一周', state: true, cycle: 6},
+                    {name: '一月', state: false, cycle: 29},
+                    {name: '三月', state: false, cycle: 89},
+                    {name: '半年', state: false, cycle: 182}
                 ],
                 boxOnlineButton: [
-                    {name: '一周', state: true, cycle: 7},
-                    {name: '一月', state: false, cycle: 30},
-                    {name: '三月', state: false, cycle: 90},
-                    {name: '半年', state: false, cycle: 183}
+                    {name: '一周', state: true, cycle: 6},
+                    {name: '一月', state: false, cycle: 29},
+                    {name: '三月', state: false, cycle: 89},
+                    {name: '半年', state: false, cycle: 182}
+                ],
+                devicesLiveButton: [
+                    {name: '一周', state: true, cycle: 6},
+                    {name: '一月', state: false, cycle: 29},
+                    {name: '三月', state: false, cycle: 89},
+                    {name: '半年', state: false, cycle: 182}
                 ],
                 boxSpaceParameter: {
                     start_time: '',
@@ -177,7 +183,9 @@
                     start_time: '',
                     end_time: '',
                 },
-                devicesLiveList: {},
+                devicesLiveList: {
+                    pingjun: 0,
+                },
                 devicesList: {
                     total_live: [0, 0],
                     total_new: [0, 0]
@@ -250,7 +258,7 @@
                             this.msg = response.message
                             return
                         }
-                        this.weekly.daily_average = (response.data.daily_average/60/60).toFixed(2) || 0
+                        this.weekly.daily_average = (response.data.daily_average / 60 / 60).toFixed(2) || 0
                         let count = response.data.total_20plus * 1 + response.data.total_12to20 * 1 + response.data.total_5to12 * 1 + response.data.total_5minus * 1
                         this.weekly.list.push({
                             name: '20小时以上',
@@ -278,13 +286,17 @@
                             return
                         }
                         this.devicesLiveList = {
+                            pingjun: 0,
                             date: [],
                             total_live: [],
                         }
+                        let count = 0
                         for (let i in response.data) {
                             this.devicesLiveList.date.push(response.data[i].date)
                             this.devicesLiveList.total_live.push(response.data[i].total_live)
+                            count += (response.data[i].total_live) * 1
                         }
+                        this.devicesLiveList.pingjun = (count / response.data.length).toFixed(2)
                         this.devicesLiveEchart()
                     })
             },
@@ -397,13 +409,13 @@
                             let relVal = params[0].axisValue
                             for (let i = 0, l = params.length; i < l; i++) {
                                 let color = (typeof (params[i].color) == 'string') ? params[i].color : ('linear-gradient(180deg, ' + params[i].color.colorStops[0].color + ', ' + params[i].color.colorStops[1].color + ');')
-                                relVal += '<div style="box-sizing:border-box;padding: 0 10px;width: 180px;display: flex;justify-content: space-between;margin: 10px 0 4px 0"><div><div style="float:left;margin:5px;width: 10px;height: 10px;border-radius: 50%;background: ' + color + '"></div>' + params[i].seriesName + ' </div><div> ' + params[i].value + "</div></div>";
+                                relVal += '<div style="box-sizing:border-box;padding: 0 10px;width: 180px;display: flex;justify-content: space-between;margin: 10px 0 4px 0"><div><div style="float:left;margin:5px;width: 10px;height: 10px;border-radius: 50%;background: ' + color + '"></div>' + params[i].seriesName + ' </div><div> ' + params[i].value + " 小时／天</div></div>";
                             }
                             return relVal;
                         }
                     },
                     legend: {
-                        data: ['在线数']
+                        data: ['在线时长']
                     },
                     grid: {
                         left: '3%',
@@ -428,7 +440,7 @@
                         }
                     },
                     series: [{
-                        name: '在线数',
+                        name: '在线时长',
                         type: 'line',
                         data: this.devicesLiveList.total_live,
                         itemStyle: {

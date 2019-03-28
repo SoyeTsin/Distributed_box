@@ -1,7 +1,7 @@
 let common = {}
 common.login_name = '';
 common.getDataDay = data => {
-    let cycle = data + 1
+    let cycle = data
     const end = new Date();
     const start = new Date();
     end.setTime(end.getTime() - 3600 * 1000 * 24 * 0);

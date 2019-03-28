@@ -11,12 +11,12 @@
                 <div class="title">用户列表</div>
                 <div>
                     <el-input placeholder="搜索手机号、用户ID" class="search" clearable
-                              v-model="parameter.filter_keyword"  @input="getData"
+                              v-model="parameter.filter_keyword" @input="getData"
                               @clear="getData"></el-input>
                     <!--@keyup.enter.native="getData"-->
                 </div>
             </div>
-            <el-table class="box-table"
+            <el-table class="box-table" @sort-change="sortFun"
                       :header-cell-style="{background:'rgb(244,247,251)'}"
                       :data="tableData"
                       stripe
@@ -28,7 +28,7 @@
                 </el-table-column>
                 <el-table-column
                         label="用户ID"
-                        >
+                >
                     <template slot-scope="scope">
                         <el-button @click="handleClick(scope.row)" type="text" size="small">
                             {{scope.row.user_id|userIdFilter}}
@@ -38,15 +38,16 @@
                 <el-table-column
                         prop="mobile"
                         label="手机号"
-                        >
+                >
                 </el-table-column>
                 <el-table-column
-                        sortable
+                        sortable="custom"
                         prop="store_credit"
-                        label="积分">
+                        label="积分"
+                >
                 </el-table-column>
                 <el-table-column
-                        sortable
+                        sortable="custom"
                         prop="register_time"
                         label="注册时间">
                 </el-table-column>
@@ -81,7 +82,9 @@
                 parameter: {
                     page_index: 1,
                     page_size: 10,
-                    filter_keyword: ''
+                    filter_keyword: '',
+                    sort_type: null,
+                    sort_by: null,
                 }
             }
         }, filters: {
@@ -91,6 +94,17 @@
         }, mounted() {
             this.getData();
         }, methods: {
+            sortFun(e) {
+                if (e.order == 'descending') {
+                    this.parameter.sort_type = 'desc'
+                } else if (e.order == 'ascending') {
+                    this.parameter.sort_type = 'asc'
+                } else {
+                    this.parameter.sort_type = null
+                }
+                this.parameter.sort_by = e.prop
+                this.getData()
+            },
             getData() {
                 this.$post(this.$api.userList, this.parameter)
                     .then((response) => {

@@ -14,7 +14,7 @@
 <style>
     #app {
         width: 100%;
-        height: 100%;
+        min-height: 100vh;
         background: rgb(242, 244, 244);
         margin: 0;
         padding: 0;

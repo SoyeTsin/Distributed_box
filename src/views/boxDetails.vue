@@ -129,16 +129,16 @@
             return {
                 pingjun: 0,
                 boxLiveTimeButton: [
-                    {name: '一周', state: true, cycle: 7},
-                    {name: '一月', state: false, cycle: 30},
-                    {name: '三月', state: false, cycle: 90},
-                    {name: '半年', state: false, cycle: 183}
+                    {name: '一周', state: true, cycle: 6},
+                    {name: '一月', state: false, cycle: 29},
+                    {name: '三月', state: false, cycle: 89},
+                    {name: '半年', state: false, cycle: 182}
                 ],
                 boxBandwidthButton: [
-                    {name: '一周', state: true, cycle: 7},
-                    {name: '一月', state: false, cycle: 30},
-                    {name: '三月', state: false, cycle: 90},
-                    {name: '半年', state: false, cycle: 183}
+                    {name: '一周', state: true, cycle: 6},
+                    {name: '一月', state: false, cycle: 29},
+                    {name: '三月', state: false, cycle: 89},
+                    {name: '半年', state: false, cycle: 182}
                 ],
                 averageBandwidth: {
                     up_stream: 0,

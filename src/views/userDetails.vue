@@ -80,17 +80,17 @@
                         width="36">
                 </el-table-column>
                 <el-table-column
-                        prop="date"
+                        prop="credit_count"
                         label="积分数目"
-                        width="180">
+                       >
                 </el-table-column>
                 <el-table-column
-                        prop="name"
+                        prop="device_id"
                         label="盒子Device ID"
-                        width="180">
+                      >
                 </el-table-column>
                 <el-table-column
-                        prop="address"
+                        prop="transaction_time"
                         sortable
                         label="收入时间">
                 </el-table-column>

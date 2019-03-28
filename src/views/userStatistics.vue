@@ -65,9 +65,9 @@
             return {
                 userNumberButton: [
                     {name: '24H', state: true, cycle: 0},
-                    {name: '一周', state: false, cycle: 7},
-                    {name: '一月', state: false, cycle: 30},
-                    {name: '半年', state: false, cycle: 183}
+                    {name: '一周', state: false, cycle: 6},
+                    {name: '一月', state: false, cycle: 29},
+                    {name: '半年', state: false, cycle: 182}
                 ],
                 userNumberParameter: {
                     start_time: '',
@@ -106,29 +106,25 @@
                             this.msg = response.message
                             return
                         }
-                        this.userNumberList = {
-                            date: [],
-                            line_appusers: [],
-                            total_appusers: []
-                        }
-                        for (let i in response.data) {
-                            this.userNumberList.date.push(response.data[i].reportDate)
-                            this.userNumberList.line_appusers.push(response.data[i].appOnlineNum)
-                        }
-                        this.addNumber()
-                    })
-            },
-            addNumber() {
-                this.$post(this.$api.appusersNew, this.userNumberParameter)
-                    .then((response) => {
-                        if (response.code != '10200') {
-                            this.msg = response.message
-                            return
-                        }
-                        for (let i in response.data) {
-                            this.userNumberList.total_appusers.push(response.data[i].total_appusers)
-                        }
-                        this.userNumberEchart()
+
+                        this.$post(this.$api.appusersNew, this.userNumberParameter)
+                            .then((newResponse) => {
+                                if (newResponse.code != '10200') {
+                                    this.msg = newResponse.message
+                                    return
+                                }
+                                this.userNumberList = {
+                                    date: [],
+                                    line_appusers: [],
+                                    total_appusers: []
+                                }
+                                for (let i in response.data) {
+                                    this.userNumberList.date.push(response.data[i].date)
+                                    this.userNumberList.line_appusers.push(response.data[i].total_appusers)
+                                    this.userNumberList.total_appusers.push(newResponse.data[i].total_appusers)
+                                }
+                                this.userNumberEchart()
+                            })
                     })
             },
             userNumberEchart() {

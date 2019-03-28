@@ -15,7 +15,7 @@
                               @clear="getData"></el-input>
                 </div>
             </div>
-            <el-table class="box-table"
+            <el-table class="box-table" @sort-change="sortFun"
                       :header-cell-style="{background:'rgb(244,247,251)'}"
                       :data="tableData"
                       stripe
@@ -52,10 +52,10 @@
                         label="绑定用户 ID">
                 </el-table-column>
                 <el-table-column
-                        sortable
                         show-overflow-tooltip
                         prop="activate_time"
                         width="160"
+                        sortable="custom"
                         label="激活时间">
                 </el-table-column>
                 <el-table-column
@@ -110,7 +110,9 @@
                 parameter: {
                     page_index: 1,
                     page_size: 10,
-                    filter_keyword: ''
+                    filter_keyword: '',
+                    sort_type: null,
+                    sort_by: null,
                 }
             }
         }, filters: {
@@ -120,6 +122,16 @@
         }, mounted() {
             this.getData();
         }, methods: {
+            sortFun(e) {
+                if (e.order == 'descending') {
+                    this.parameter.sort_type = 'desc'
+                } else if (e.order == 'ascending') {
+                    this.parameter.sort_type = 'asc'
+                } else {
+                    this.parameter.sort_type = null
+                }
+                this.getData()
+            },
             getData() {
                 this.$post(this.$api.boxList, this.parameter)
                     .then((response) => {

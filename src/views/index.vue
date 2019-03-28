@@ -101,7 +101,7 @@
         }
     }
 
-    @contentWidth: 1678px;
+    @contentWidth: 1560px;
     .header {
         height: 75px;
         width: 100%;
@@ -120,7 +120,7 @@
             line-height: 75px;
             color: #ffffff;
             box-sizing: border-box;
-            padding: 0 25px;
+            padding: 0 5px;
         }
 
         .title {
@@ -168,7 +168,7 @@
             justify-content: space-between;
 
             .aside {
-                width: 340px;
+                width: 224px;
                 box-sizing: border-box;
                 padding-top: 56px;
                 display: flex;
@@ -191,7 +191,7 @@
             .content {
                 width: 1342px;
                 box-sizing: border-box;
-                padding: 56px 80px 0 80px;
+                padding: 56px 0px 0 80px;
                 display: flex;
                 justify-content: flex-end;
 
