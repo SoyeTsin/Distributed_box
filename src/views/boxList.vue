@@ -10,7 +10,7 @@
             <div class="list-content-top">
                 <div class="title"> 盒子列表</div>
                 <div>
-                    <el-input placeholder="搜索盒子ID、用户ID" class="search" clearable
+                    <el-input placeholder="搜索盒子Device ID、Node ID、用户ID" class="search" clearable
                               v-model="parameter.filter_keyword" @input="getData"
                               @clear="getData"></el-input>
                 </div>
@@ -49,8 +49,10 @@
                 </el-table-column>
                 <el-table-column
                         show-overflow-tooltip
-                        prop="user_id"
                         label="绑定用户 ID">
+                    <template slot-scope="scope">
+                        {{scope.row.user_id|ifNull}}
+                    </template>
                 </el-table-column>
                 <el-table-column
                         show-overflow-tooltip
@@ -61,9 +63,9 @@
                 </el-table-column>
                 <el-table-column
                         show-overflow-tooltip
-                        label="版本（固件／软件／SDK）">
+                        label="版本（固件／软件）">
                     <template slot-scope="scope">
-                        {{scope.row.firmware_version}}／{{scope.row.software_version}}／{{scope.row.sdk_version}}
+                        {{scope.row.firmware_version}}／{{scope.row.software_version}}
                     </template>
                 </el-table-column>
                 <el-table-column
@@ -123,6 +125,13 @@
             numFil(num) {
                 num = (num / (1000 * 1000 * 1000 * 1000)).toFixed(2)
                 return num + ' GB'
+            },
+            ifNull(val) {
+                if (val) {
+                    return val
+                } else {
+                    return '无'
+                }
             }
         },
         mounted() {

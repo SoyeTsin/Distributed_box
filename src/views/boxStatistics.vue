@@ -90,13 +90,18 @@
                     平均在线时长：{{weekly.daily_average}}小时／天
                 </div>
             </div>
-            <div class="so-bar">
-                <div class="bar-item" v-for="(item,key) in weekly.list" v-bind:key="key">
-                    <div class="bar">
-                        <div class="active" :style="'width: '+item.val+'%'"></div>
+            <div class="so-bar-top">
+                <div class="so-bar">
+                    <div class="bar-item" v-for="(item,key) in weekly.list" v-bind:key="key">
+                        <div class="bar">
+                            <div class="active" :style="'width: '+item.val+'%'"></div>
+                        </div>
+                        <div class="title">{{item.name}}</div>
+                        <div class="title">{{item.val}}%</div>
                     </div>
-                    <div class="title">{{item.name}}</div>
-                    <div class="title">{{item.val}}%</div>
+                </div>
+                <div class="null-data" v-if="!weekly.list">
+                    <div>暂无数据</div>
                 </div>
             </div>
             <div class="details-content-top">
@@ -111,7 +116,7 @@
                 </div>
                 <div>
                     <div class="scroll-content-item" id="box-sdk"></div>
-                    <div>盒子不同SDK版本占比饼图</div>
+                    <div>盒子不同固件版本占比饼图</div>
                 </div>
             </div>
 
@@ -648,7 +653,7 @@
                 // 指定图表的配置项和数据
                 let option = {
                     title: {
-                        subtext: '盒子SDK',
+                        subtext: '盒子固件',
                         subtextStyle: {
                             fontSize: 16,
                             color: "#7A8198",
@@ -664,7 +669,7 @@
                     },
                     series: [
                         {
-                            name: '盒子SDK',
+                            name: '盒子固件',
                             type: 'pie',
                             radius: '55%',
                             center: ['50%', '60%'],

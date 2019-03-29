@@ -49,8 +49,8 @@
         data() {
             return {
                 bg, contentBg, contentDecorate, userImg, account_username, account_password, eye,
-                login_name: 'frontend',
-                password: 'password',
+                login_name: '',//frontend
+                password: '',//password
                 passwordType: true,
                 msg: '',
                 showPage: false

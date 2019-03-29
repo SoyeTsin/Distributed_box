@@ -4,7 +4,7 @@
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item>盒子端管理</el-breadcrumb-item>
                 <el-breadcrumb-item :to="{ path: '/boxList' }"><a>盒子列表</a></el-breadcrumb-item>
-                <el-breadcrumb-item><a>用户ID123456</a></el-breadcrumb-item>
+                <el-breadcrumb-item><a>盒子{{device_id}}</a></el-breadcrumb-item>
             </el-breadcrumb>
         </el-header>
         <div class="details-content">
@@ -44,7 +44,7 @@
                 >
                 </el-table-column>
                 <el-table-column
-                        prop="device_id"
+                        prop="sharding_count"
                         label="分片数"
                 >
                 </el-table-column>
@@ -67,9 +67,9 @@
                 </el-table-column>
                 <el-table-column
                         show-overflow-tooltip
-                        label="版本（固件／软件／SDK）">
+                        label="版本（固件／软件）">
                     <template slot-scope="scope">
-                        {{scope.row.firmware_version}}／{{scope.row.software_version}}／{{scope.row.sdk_version}}
+                        {{scope.row.firmware_version}}／{{scope.row.software_version}}
                     </template>
                 </el-table-column>
 

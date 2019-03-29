@@ -4,7 +4,7 @@
             <div class="header-content">
                 <div class="title">
                     <img :src="logo">
-                    <div>分布式后管平台</div>
+                    <div>分布式存储后管平台</div>
                 </div>
                 <div class="logout">
                     <div> {{userName}}</div>
@@ -49,14 +49,14 @@
             this.userName = localStorage.getItem('username')
             // this.userName = this.$store.state.username
             // 定时获取token流程，10分钟无操作停止
-            localStorage.setItem('refresh', '1')//0 停止 1进行 ,定时获取token流程，10分钟无操作停止，每次发送请求时会更新这个状态为1,每次更新成功会改成0
+            localStorage.setItem('refresh', '1')//0 停止 1进行 ,定时获取token流程
             let interval = setInterval(() => {
                 if (localStorage.getItem('refresh') == '1') {
                     that.refresh()
                 } else {
                     clearInterval(interval)
                 }
-            }, 1000 * 10 * 60)
+            }, 1000 * 60 * 1)
         }, methods: {
             refresh() {
                 const that = this
@@ -68,9 +68,7 @@
                         }
                         localStorage.setItem('token', response.data['X-PA-ACCESSTOKEN'])
                         localStorage.setItem('refresToken', response.data['X-PA-REFRESHTOKEN'])
-                        setTimeout(() => {
-                            localStorage.setItem('refresh', '0')//0 停止 1进行 ,定时获取token流程，10分钟无操作停止，每次发送请求时会更新这个状态为1,每次更新成功会改成0
-                        }, 2000)
+
                     })
             },
             logoutFun() {

@@ -16,7 +16,12 @@
                 </div>
             </div>
             <div class="chart-title blue-title">
-                新增数：今日 1000 昨日 1000 在线数：今日 100 昨日 100
+                <div>新增数：今日 {{userNumberList.total_appusers[userNumberList.total_appusers.length-1]}} 昨日
+                    {{userNumberList.total_appusers[userNumberList.total_appusers.length-2]}}
+                </div>
+                <div>在线数：今日 {{userNumberList.line_appusers[userNumberList.line_appusers.length-1]}} 昨日
+                    {{userNumberList.line_appusers[userNumberList.line_appusers.length-2]}}
+                </div>
             </div>
             <div class="chart-title">
                 <div>
@@ -36,13 +41,18 @@
                     <div class="chart-content-title">APP软件版本</div>
                 </div>
             </div>
-            <div class="so-bar" v-for="(item, ve) in appusersVersionsList" v-bind:key="item.id">
-                <div class="bar-item" v-for="(val,key) in item" v-bind:key="key">
-                    <div class="bar">
-                        <div class="active" :style="'width: '+val+'%'"></div>
+            <div class="so-bar-top">
+                <div class="so-bar" v-for="(item, ve) in appusersVersionsList" v-bind:key="item.id">
+                    <div class="bar-item" v-for="(val,key) in item" v-bind:key="key">
+                        <div class="bar">
+                            <div class="active" :style="'width: '+val+'%'"></div>
+                        </div>
+                        <div class="title">{{ve}} {{key}}</div>
+                        <div class="title">{{val}}%</div>
                     </div>
-                    <div class="title">{{ve}} {{key}}</div>
-                    <div class="title">{{val}}%</div>
+                </div>
+                <div class="null-data" v-if="JSON.stringify(appusersVersionsList.android)=='{}'&&JSON.stringify(appusersVersionsList.iOS)=='{}'">
+                    <div>暂无数据</div>
                 </div>
             </div>
         </div>
@@ -73,7 +83,10 @@
                     start_time: '',
                     end_time: '',
                 },
-                userNumberList: [],
+                userNumberList: {
+                    line_appusers: [0, 0],
+                    total_appusers: [0, 0]
+                },
                 appusersVersionsList: {},
                 titleData: {
                     today: {add: 0, online: 0}
@@ -85,6 +98,15 @@
 
             this.onlineNumber()
             this.appusersVersions()
+        },
+        filters: {
+            ifNull(obj) {
+                debugger
+                for (let key in obj) {
+                    return true;
+                }
+                return false;
+            }
         },
         methods: {
             selectCycle(item, name) {

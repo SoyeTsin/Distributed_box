@@ -4,14 +4,14 @@ import router from '../router'
 axios.defaults.timeout = 5000;
 //自动判断环境
 console.log(window.location.host)
-const urlHost=window.location.host
-if(urlHost=='www.soyetsin.com'){
+const urlHost = window.location.host
+if (urlHost == 'www.soyetsin.com') {
     axios.defaults.baseURL = 'https://119.147.216.189';
     console.log('现在连接的是开发环境')
-}else if(urlHost=='www.soyelive.com'){
+} else if (urlHost == 'www.soyelive.com') {
     axios.defaults.baseURL = 'https://p2p-plt.yingxiang.pingan.com:8012';
     console.log('现在连接的是测试环境')
-}else{
+} else {
     axios.defaults.baseURL = 'https://119.147.216.189';
     console.log('现在连接的是开发环境')
 }
@@ -43,7 +43,9 @@ axios.interceptors.request.use(
 //http response 拦截器
 axios.interceptors.response.use(
     response => {
-        localStorage.setItem('refresh', '1')//0 停止 1进行 ,定时获取token流程，10分钟无操作停止，每次发送请求时会更新这个状态为1,每次更新成功会改成0
+        setTimeout(() => {
+            localStorage.setItem('refresh', '0')//0 停止 1进行 ,定时获取token流程，12小时无操作停止
+        }, 1000 * 60 * 60 * 12)
         if (response.data.errCode == '10411') {
             router.push({
                 path: "/login",
