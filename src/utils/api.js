@@ -19,5 +19,5 @@ export const api = {
     appusersNew: '/manage/1.0/admin/appusers/new',//app新增用户统计
     appusersOnline: '/manage/1.0/admin/appusers/online',//app新增用户统计
     appusersVersions: '/manage/1.0/admin/appusers/versions',//app版本信息
-    devicesVersions: '/manage/1.0/admin/devices/versions',//设备版本信息
+    devicesVersions: '/manage/1.0/admin/devices/versions/new',//设备版本信息
 }

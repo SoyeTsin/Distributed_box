@@ -17,7 +17,7 @@
                         <img :src="account_password">
                         <div>密&nbsp;&nbsp;码：</div>
                         <el-input class="account-input" :type="passwordType?'password':'text'" clearable
-                                  v-model="password" maxlength="25"></el-input>
+                                  v-model="password" maxlength="25" @keyup.enter.native="login"></el-input>
                         <img :src="eye" class="eye" @click="passwordType=!passwordType">
                     </div>
                     <div class="msg" v-show="msg">
@@ -91,6 +91,42 @@
 </script>
 
 <style scoped lang="less">
+    @media (max-width: 1440px) {
+        .el-main > div {
+            transform: scale(0.9);
+            transform-origin: 50% 50%;
+        }
+    }
+
+    @media (min-width: 1280px)  and (max-width: 1440px) {
+        .el-main > div {
+            transform: scale(0.85);
+            transform-origin: 50% 50%;
+        }
+    }
+
+    @media (min-width: 1125px) and (max-width: 1280px) {
+        .el-main > div {
+            transform: scale(0.8);
+            transform-origin: 50% 50%;
+        }
+    }
+
+    @media (min-width: 1050px) and (max-width: 1125px) {
+        .el-main > div {
+            transform: scale(0.75);
+            transform-origin: 50% 50%;
+        }
+    }
+
+    @media (max-width: 1050px) {
+        .el-main > div {
+            transform: scale(0.7);
+            transform-origin: 50% 50%;
+        }
+    }
+
+
     .el-container {
         background: #72b8f9;
         position: absolute;

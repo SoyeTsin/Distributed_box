@@ -584,11 +584,11 @@
                                 value: response.data.soft_version[i]
                             })
                         }
-                        for (let i in response.data.SDK_version) {
+                        for (let i in response.data.firmware_version) {
                             that.versionsList.SDK_versionDate.push('' + i)
                             that.versionsList.SDK_version.push({
                                 name: '' + i,
-                                value: response.data.SDK_version[i]
+                                value: response.data.firmware_version[i]
                             })
                         }
                         that.boxSoftwareEchart()

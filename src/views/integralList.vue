@@ -27,7 +27,7 @@
                 </el-table-column>
                 <el-table-column
                         label="个人积分"
-                        width="180">
+                        >
                     <template slot-scope="scope">
                         <div v-show="scope.row.user_exception==0">
                             {{scope.row.user_exception|userExceptionFile}}
@@ -39,6 +39,7 @@
                     </template>
                 </el-table-column>
                 <el-table-column
+                        show-overflow-tooltip
                         label="平台积分">
                     <template slot-scope="scope">
                         <div v-show="scope.row.total_deliver==scope.row.total_income">
@@ -62,7 +63,7 @@
                 </el-pagination>
             </div>
         </div>
-        <el-dialog title="收货地址" :visible.sync="dialogTableVisible" :modal-append-to-body='false'>
+        <el-dialog title="异常用户" :visible.sync="dialogTableVisible" :modal-append-to-body='false'>
             <el-table :data="gridData">
                 <el-table-column property="user_id" label="异常用户ID"></el-table-column>
                 <el-table-column property="total_income" label="积分明细合计"></el-table-column>

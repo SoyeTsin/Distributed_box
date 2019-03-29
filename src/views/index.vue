@@ -95,7 +95,7 @@
         min-height: 100%;
         position: absolute;
         background: rgb(242, 244, 244);
-
+        font-size: 12px;
         ::after {
             content: '';
             display: block;
@@ -104,6 +104,8 @@
     }
 
     @contentWidth: 1560px;
+
+
     .header {
         height: 75px;
         width: 100%;
@@ -205,7 +207,7 @@
             }
 
             .content {
-                width: 1342px;
+                width: calc(~"100% - 224px");
                 box-sizing: border-box;
                 padding: 56px 10px 0 80px;
                 display: flex;
@@ -217,4 +219,73 @@
             }
         }
     }
+
+    @media (max-width: 1440px) {
+        .main {
+            width: @contentWidth;
+
+            .main-content {
+                width: @contentWidth;
+            }
+        }
+    }
+
+    @media (min-width: 1280px)  and (max-width: 1560px) {
+        @contentWidth: 1280px;
+        .main {
+            width: @contentWidth;
+
+            .main-content {
+                width: @contentWidth;
+            }
+        }
+
+        .header {
+            min-width: @contentWidth;
+
+            .header-content {
+                width: @contentWidth;
+            }
+        }
+    }
+
+    @media (min-width: 1125px) and (max-width: 1280px) {
+        @contentWidth: 1125px;
+        .main {
+            width: @contentWidth;
+
+            .main-content {
+                width: @contentWidth;
+            }
+        }
+
+        .header {
+            min-width: @contentWidth;
+
+            .header-content {
+                width: @contentWidth;
+            }
+        }
+    }
+
+    @media (max-width: 1125px) {
+        @contentWidth: 1050px;
+        .main {
+            width: @contentWidth;
+
+            .main-content {
+                width: @contentWidth;
+            }
+        }
+
+        .header {
+            min-width: @contentWidth;
+
+            .header-content {
+                width: @contentWidth;
+            }
+        }
+    }
+
+
 </style>

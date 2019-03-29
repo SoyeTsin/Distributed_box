@@ -101,7 +101,6 @@
         },
         filters: {
             ifNull(obj) {
-                debugger
                 for (let key in obj) {
                     return true;
                 }
