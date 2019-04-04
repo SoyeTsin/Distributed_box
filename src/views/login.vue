@@ -11,13 +11,15 @@
                     <div class="account-item">
                         <img :src="account_username">
                         <div>用户名：</div>
-                        <el-input class="account-input" v-model="login_name" maxlength="25" clearable></el-input>
+                        <el-input class="account-input" v-model="login_name" maxlength="25" clearable id="username"
+                                  name="username"></el-input>
                     </div>
                     <div class="account-item">
                         <img :src="account_password">
                         <div>密&nbsp;&nbsp;码：</div>
-                        <el-input class="account-input" :type="passwordType?'password':'text'" clearable
-                                  v-model="password" maxlength="25" @keyup.enter.native="login"></el-input>
+                        <el-input class="account-input" :type="passwordType?'password':'text'" clearable id="password"
+                                  name="password"
+                                  v-model="password" maxlength="25"></el-input>
                         <img :src="eye" class="eye" @click="passwordType=!passwordType">
                     </div>
                     <div class="msg" v-show="msg">
@@ -49,8 +51,10 @@
         data() {
             return {
                 bg, contentBg, contentDecorate, userImg, account_username, account_password, eye,
-                login_name: '',//frontend
-                password: '',//password
+                login_name: 'frontend',
+                password: 'password',
+                // login_name: '',
+                // password: '',
                 passwordType: true,
                 msg: '',
                 showPage: false
@@ -91,42 +95,6 @@
 </script>
 
 <style scoped lang="less">
-    @media (max-width: 1440px) {
-        .el-main > div {
-            transform: scale(0.9);
-            transform-origin: 50% 50%;
-        }
-    }
-
-    @media (min-width: 1280px)  and (max-width: 1440px) {
-        .el-main > div {
-            transform: scale(0.85);
-            transform-origin: 50% 50%;
-        }
-    }
-
-    @media (min-width: 1125px) and (max-width: 1280px) {
-        .el-main > div {
-            transform: scale(0.8);
-            transform-origin: 50% 50%;
-        }
-    }
-
-    @media (min-width: 1050px) and (max-width: 1125px) {
-        .el-main > div {
-            transform: scale(0.75);
-            transform-origin: 50% 50%;
-        }
-    }
-
-    @media (max-width: 1050px) {
-        .el-main > div {
-            transform: scale(0.7);
-            transform-origin: 50% 50%;
-        }
-    }
-
-
     .el-container {
         background: #72b8f9;
         position: absolute;

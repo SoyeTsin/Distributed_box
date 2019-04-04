@@ -20,11 +20,23 @@
         <el-submenu index="2">
             <template slot="title">
                 <img src="../assets/menu-2.png" class="icon-2"/>
+                <span>盒子热更新</span>
+            </template>
+            <el-menu-item-group>
+                <el-menu-item index="/appRegister" @click="into('/appRegister')">程序注册</el-menu-item>
+                <el-menu-item index="/appHistory" @click="into('/appHistory')">历史注册</el-menu-item>
+                <el-menu-item index="/appReport" @click="into('/appReport')">上报状态</el-menu-item>
+            </el-menu-item-group>
+        </el-submenu>
+        <div class="aside-line"></div>
+        <el-submenu index="2">
+            <template slot="title">
+                <img src="../assets/menu-2.png" class="icon-2"/>
                 <span>数据统计</span>
             </template>
             <el-menu-item-group>
-                <el-menu-item index="/userStatistics"  @click="into('/userStatistics')">盒子用户统计</el-menu-item>
-                <el-menu-item index="/boxStatistics"  @click="into('/boxStatistics')">盒子节点统计</el-menu-item>
+                <el-menu-item index="/userStatistics" @click="into('/userStatistics')">盒子用户统计</el-menu-item>
+                <el-menu-item index="/boxStatistics" @click="into('/boxStatistics')">盒子节点统计</el-menu-item>
             </el-menu-item-group>
         </el-submenu>
 

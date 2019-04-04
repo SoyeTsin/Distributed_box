@@ -165,9 +165,9 @@
         }, mounted() {
             this.device_id = this.$route.query.device_id
             this.getBoxDetails()
-            this.boxLiveParameter = common.getDataDay(7)
+            this.boxLiveParameter = common.getDataDay(6)
             this.boxLiveTime()
-            this.boxBandwidthParameter = common.getDataDay(7)
+            this.boxBandwidthParameter = common.getDataDay(6)
             this.boxBandwidth()
         }, methods: {
             selectCycle(item, name) {

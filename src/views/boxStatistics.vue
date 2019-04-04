@@ -217,10 +217,10 @@
             }
         },
         mounted() {
-            this.devicesLiveParameter = common.getDataDay(7)
-            this.boxOnlineParameter = common.getDataDay(7)
-            this.boxSpaceParameter = common.getDataDay(7)
-            this.devicesParameter = common.getDataDay(7)
+            this.devicesLiveParameter = common.getDataDay(6)
+            this.boxOnlineParameter = common.getDataDay(6)
+            this.boxSpaceParameter = common.getDataDay(6)
+            this.devicesParameter = common.getDataDay(6)
             this.devicesLive()
             this.boxSpace()
             this.devices()
